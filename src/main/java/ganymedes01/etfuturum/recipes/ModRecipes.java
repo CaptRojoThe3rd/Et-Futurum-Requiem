@@ -1,5 +1,13 @@
 package ganymedes01.etfuturum.recipes;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.Pair;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.ModBlocks;
@@ -14,7 +22,6 @@ import ganymedes01.etfuturum.blocks.ores.modded.BlockGeneralModdedDeepslateOre;
 import ganymedes01.etfuturum.blocks.rawore.modded.BlockGeneralModdedRawOre;
 import ganymedes01.etfuturum.compat.ExternalContent;
 import ganymedes01.etfuturum.compat.ModsList;
-
 import ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems;
 import ganymedes01.etfuturum.configuration.configs.ConfigExperiments;
 import ganymedes01.etfuturum.configuration.configs.ConfigFunctions;
@@ -26,7 +33,6 @@ import ganymedes01.etfuturum.items.ItemSuspiciousStew;
 import ganymedes01.etfuturum.items.rawore.modded.ItemGeneralModdedRawOre;
 import ganymedes01.etfuturum.lib.EnumColor;
 import ganymedes01.etfuturum.lib.Reference;
-
 import ganymedes01.etfuturum.recipes.crafting.RecipeAddPattern;
 import ganymedes01.etfuturum.recipes.crafting.RecipeDuplicatePattern;
 import ganymedes01.etfuturum.recipes.crafting.RecipeDyedShulkerBox;
@@ -55,13 +61,6 @@ import net.minecraftforge.oredict.RecipeSorter;
 import net.minecraftforge.oredict.RecipeSorter.Category;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.tuple.Pair;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
 public class ModRecipes {
 
@@ -393,6 +392,152 @@ public class ModRecipes {
 	private static void registerRecipes() {
 		if (!ModsList.GTNH.isLoaded()) {
 			addShapedRecipe(ModBlocks.OLD_GRAVEL.newItemStack(4), "xy", "yx", 'x', ModBlocks.COARSE_DIRT.get(), 'y', Blocks.gravel);
+		}
+		
+		if (ModsList.BIOMES_O_PLENTY.isLoaded()) {
+			addShapedRecipe(ModBlocks.BOP_WOOD.newItemStack(3, 0), "xx", "xx", 'x', ExternalContent.Blocks.BOP_LOGS1.newItemStack(1, 0));
+			addShapedRecipe(ModBlocks.BOP_WOOD.newItemStack(3, 1), "xx", "xx", 'x', ExternalContent.Blocks.BOP_LOGS1.newItemStack(1, 1));
+			addShapedRecipe(ModBlocks.BOP_WOOD.newItemStack(3, 2), "xx", "xx", 'x', ExternalContent.Blocks.BOP_LOGS1.newItemStack(1, 2));
+			addShapedRecipe(ModBlocks.BOP_WOOD.newItemStack(3, 3), "xx", "xx", 'x', ExternalContent.Blocks.BOP_LOGS1.newItemStack(1, 3));
+			addShapedRecipe(ModBlocks.BOP_WOOD2.newItemStack(3, 0), "xx", "xx", 'x', ExternalContent.Blocks.BOP_LOGS2.newItemStack(1, 0));
+			addShapedRecipe(ModBlocks.BOP_WOOD2.newItemStack(3, 1), "xx", "xx", 'x', ExternalContent.Blocks.BOP_LOGS2.newItemStack(1, 1));
+			addShapedRecipe(ModBlocks.BOP_WOOD2.newItemStack(3, 2), "xx", "xx", 'x', ExternalContent.Blocks.BOP_LOGS2.newItemStack(1, 2));
+			addShapedRecipe(ModBlocks.BOP_WOOD2.newItemStack(3, 3), "xx", "xx", 'x', ExternalContent.Blocks.BOP_LOGS2.newItemStack(1, 3));
+			addShapedRecipe(ModBlocks.BOP_WOOD3.newItemStack(3, 0), "xx", "xx", 'x', ExternalContent.Blocks.BOP_LOGS3.newItemStack(1, 0));
+			addShapedRecipe(ModBlocks.BOP_WOOD3.newItemStack(3, 1), "xx", "xx", 'x', ExternalContent.Blocks.BOP_LOGS3.newItemStack(1, 1));
+			addShapedRecipe(ModBlocks.BOP_WOOD3.newItemStack(3, 2), "xx", "xx", 'x', ExternalContent.Blocks.BOP_LOGS3.newItemStack(1, 2));
+			addShapedRecipe(ModBlocks.BOP_WOOD3.newItemStack(3, 3), "xx", "xx", 'x', ExternalContent.Blocks.BOP_LOGS3.newItemStack(1, 3));
+			addShapedRecipe(ModBlocks.BOP_WOOD4.newItemStack(3, 0), "xx", "xx", 'x', ExternalContent.Blocks.BOP_LOGS4.newItemStack(1, 0));
+			addShapedRecipe(ModBlocks.BOP_WOOD4.newItemStack(3, 1), "xx", "xx", 'x', ExternalContent.Blocks.BOP_LOGS4.newItemStack(1, 1));
+			addShapedRecipe(ModBlocks.BOP_WOOD4.newItemStack(3, 2), "xx", "xx", 'x', ExternalContent.Blocks.BOP_LOGS4.newItemStack(1, 2));
+			
+			addShapedRecipe(ModBlocks.BOP_WOOD_STRIPPED.newItemStack(3, 0), "xx", "xx", 'x', ModBlocks.BOP_LOG_STRIPPED.newItemStack(1, 0));
+			addShapedRecipe(ModBlocks.BOP_WOOD_STRIPPED.newItemStack(3, 1), "xx", "xx", 'x', ModBlocks.BOP_LOG_STRIPPED.newItemStack(1, 1));
+			addShapedRecipe(ModBlocks.BOP_WOOD_STRIPPED.newItemStack(3, 2), "xx", "xx", 'x', ModBlocks.BOP_LOG_STRIPPED.newItemStack(1, 2));
+			addShapedRecipe(ModBlocks.BOP_WOOD_STRIPPED.newItemStack(3, 3), "xx", "xx", 'x', ModBlocks.BOP_LOG_STRIPPED.newItemStack(1, 3));
+			addShapedRecipe(ModBlocks.BOP_WOOD_STRIPPED2.newItemStack(3, 0), "xx", "xx", 'x', ModBlocks.BOP_LOG_STRIPPED2.newItemStack(1, 0));
+			addShapedRecipe(ModBlocks.BOP_WOOD_STRIPPED2.newItemStack(3, 1), "xx", "xx", 'x', ModBlocks.BOP_LOG_STRIPPED2.newItemStack(1, 1));
+			addShapedRecipe(ModBlocks.BOP_WOOD_STRIPPED2.newItemStack(3, 2), "xx", "xx", 'x', ModBlocks.BOP_LOG_STRIPPED2.newItemStack(1, 2));
+			addShapedRecipe(ModBlocks.BOP_WOOD_STRIPPED2.newItemStack(3, 3), "xx", "xx", 'x', ModBlocks.BOP_LOG_STRIPPED2.newItemStack(1, 3));
+			addShapedRecipe(ModBlocks.BOP_WOOD_STRIPPED3.newItemStack(3, 0), "xx", "xx", 'x', ModBlocks.BOP_LOG_STRIPPED3.newItemStack(1, 0));
+			addShapedRecipe(ModBlocks.BOP_WOOD_STRIPPED3.newItemStack(3, 1), "xx", "xx", 'x', ModBlocks.BOP_LOG_STRIPPED3.newItemStack(1, 1));
+			addShapedRecipe(ModBlocks.BOP_WOOD_STRIPPED3.newItemStack(3, 2), "xx", "xx", 'x', ModBlocks.BOP_LOG_STRIPPED3.newItemStack(1, 2));
+			addShapedRecipe(ModBlocks.BOP_WOOD_STRIPPED3.newItemStack(3, 3), "xx", "xx", 'x', ModBlocks.BOP_LOG_STRIPPED3.newItemStack(1, 3));
+			addShapedRecipe(ModBlocks.BOP_WOOD_STRIPPED4.newItemStack(3, 0), "xx", "xx", 'x', ModBlocks.BOP_LOG_STRIPPED4.newItemStack(1, 0));
+			addShapedRecipe(ModBlocks.BOP_WOOD_STRIPPED4.newItemStack(3, 1), "xx", "xx", 'x', ModBlocks.BOP_LOG_STRIPPED4.newItemStack(1, 1));
+			addShapedRecipe(ModBlocks.BOP_WOOD_STRIPPED4.newItemStack(3, 2), "xx", "xx", 'x', ModBlocks.BOP_LOG_STRIPPED4.newItemStack(1, 2));
+			
+			addShapedRecipe(ModBlocks.BOP_SACREDOAK_BUTTON.newItemStack(1), "x", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 0));
+			addShapedRecipe(ModBlocks.BOP_CHERRY_BUTTON.newItemStack(1), "x", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 1));
+			addShapedRecipe(ModBlocks.BOP_DARK_BUTTON.newItemStack(1), "x", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 2));
+			addShapedRecipe(ModBlocks.BOP_FIR_BUTTON.newItemStack(1), "x", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 3));
+			addShapedRecipe(ModBlocks.BOP_ETHEREAL_BUTTON.newItemStack(1), "x", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 4));
+			addShapedRecipe(ModBlocks.BOP_MAGIC_BUTTON.newItemStack(1), "x", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 5));
+			addShapedRecipe(ModBlocks.BOP_MANGROVE_BUTTON.newItemStack(1), "x", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 6));
+			addShapedRecipe(ModBlocks.BOP_PALM_BUTTON.newItemStack(1), "x", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 7));
+			addShapedRecipe(ModBlocks.BOP_REDWOOD_BUTTON.newItemStack(1), "x", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 8));
+			addShapedRecipe(ModBlocks.BOP_WILLOW_BUTTON.newItemStack(1), "x", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 9));
+			addShapedRecipe(ModBlocks.BOP_BAMBOO_BUTTON.newItemStack(1), "x", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 10));
+			addShapedRecipe(ModBlocks.BOP_PINE_BUTTON.newItemStack(1), "x", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 11));
+			addShapedRecipe(ModBlocks.BOP_HELLBARK_BUTTON.newItemStack(1), "x", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 12));
+			addShapedRecipe(ModBlocks.BOP_JACARANDA_BUTTON.newItemStack(1), "x", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 13));
+			addShapedRecipe(ModBlocks.BOP_MAHOGANY_BUTTON.newItemStack(1), "x", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 14));
+			
+			addShapedRecipe(ModBlocks.BOP_SACREDOAK_PRESSURE_PLATE.newItemStack(1), "xx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 0));
+			addShapedRecipe(ModBlocks.BOP_CHERRY_PRESSURE_PLATE.newItemStack(1), "xx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 1));
+			addShapedRecipe(ModBlocks.BOP_DARK_PRESSURE_PLATE.newItemStack(1), "xx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 2));
+			addShapedRecipe(ModBlocks.BOP_FIR_PRESSURE_PLATE.newItemStack(1), "xx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 3));
+			addShapedRecipe(ModBlocks.BOP_ETHEREAL_PRESSURE_PLATE.newItemStack(1), "xx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 4));
+			addShapedRecipe(ModBlocks.BOP_MAGIC_PRESSURE_PLATE.newItemStack(1), "xx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 5));
+			addShapedRecipe(ModBlocks.BOP_MANGROVE_PRESSURE_PLATE.newItemStack(1), "xx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 6));
+			addShapedRecipe(ModBlocks.BOP_PALM_PRESSURE_PLATE.newItemStack(1), "xx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 7));
+			addShapedRecipe(ModBlocks.BOP_REDWOOD_PRESSURE_PLATE.newItemStack(1), "xx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 8));
+			addShapedRecipe(ModBlocks.BOP_WILLOW_PRESSURE_PLATE.newItemStack(1), "xx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 9));
+			addShapedRecipe(ModBlocks.BOP_BAMBOO_PRESSURE_PLATE.newItemStack(1), "xx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 10));
+			addShapedRecipe(ModBlocks.BOP_PINE_PRESSURE_PLATE.newItemStack(1), "xx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 11));
+			addShapedRecipe(ModBlocks.BOP_HELLBARK_PRESSURE_PLATE.newItemStack(1), "xx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 12));
+			addShapedRecipe(ModBlocks.BOP_JACARANDA_PRESSURE_PLATE.newItemStack(1), "xx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 13));
+			addShapedRecipe(ModBlocks.BOP_MAHOGANY_PRESSURE_PLATE.newItemStack(1), "xx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 14));
+			
+			addShapedRecipe(ModBlocks.BOP_SACREDOAK_FENCE_GATE.newItemStack(1), "sxs", "sxs", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 0));
+			addShapedRecipe(ModBlocks.BOP_CHERRY_FENCE_GATE.newItemStack(1), "sxs", "sxs", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 1));
+			addShapedRecipe(ModBlocks.BOP_DARK_FENCE_GATE.newItemStack(1), "sxs", "sxs", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 2));
+			addShapedRecipe(ModBlocks.BOP_FIR_FENCE_GATE.newItemStack(1), "sxs", "sxs", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 3));
+			addShapedRecipe(ModBlocks.BOP_ETHEREAL_FENCE_GATE.newItemStack(1), "sxs", "sxs", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 4));
+			addShapedRecipe(ModBlocks.BOP_MAGIC_FENCE_GATE.newItemStack(1), "sxs", "sxs", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 5));
+			addShapedRecipe(ModBlocks.BOP_MANGROVE_FENCE_GATE.newItemStack(1), "sxs", "sxs", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 6));
+			addShapedRecipe(ModBlocks.BOP_PALM_FENCE_GATE.newItemStack(1), "sxs", "sxs", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 7));
+			addShapedRecipe(ModBlocks.BOP_REDWOOD_FENCE_GATE.newItemStack(1), "sxs", "sxs", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 8));
+			addShapedRecipe(ModBlocks.BOP_WILLOW_FENCE_GATE.newItemStack(1), "sxs", "sxs", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 9));
+			addShapedRecipe(ModBlocks.BOP_BAMBOO_FENCE_GATE.newItemStack(1), "sxs", "sxs", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 10));
+			addShapedRecipe(ModBlocks.BOP_PINE_FENCE_GATE.newItemStack(1), "sxs", "sxs", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 11));
+			addShapedRecipe(ModBlocks.BOP_HELLBARK_FENCE_GATE.newItemStack(1), "sxs", "sxs", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 12));
+			addShapedRecipe(ModBlocks.BOP_JACARANDA_FENCE_GATE.newItemStack(1), "sxs", "sxs", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 13));
+			addShapedRecipe(ModBlocks.BOP_MAHOGANY_FENCE_GATE.newItemStack(1), "sxs", "sxs", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 14));
+			
+			addShapedRecipe(ModBlocks.BOP_SACREDOAK_DOOR.newItemStack(3), "xx", "xx", "xx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 0));
+			addShapedRecipe(ModBlocks.BOP_CHERRY_DOOR.newItemStack(3), "xx", "xx", "xx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 1));
+			addShapedRecipe(ModBlocks.BOP_DARK_DOOR.newItemStack(3), "xx", "xx", "xx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 2));
+			addShapedRecipe(ModBlocks.BOP_FIR_DOOR.newItemStack(3), "xx", "xx", "xx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 3));
+			addShapedRecipe(ModBlocks.BOP_ETHEREAL_DOOR.newItemStack(3), "xx", "xx", "xx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 4));
+			addShapedRecipe(ModBlocks.BOP_MAGIC_DOOR.newItemStack(3), "xx", "xx", "xx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 5));
+			addShapedRecipe(ModBlocks.BOP_MANGROVE_DOOR.newItemStack(3), "xx", "xx", "xx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 6));
+			addShapedRecipe(ModBlocks.BOP_PALM_DOOR.newItemStack(3), "xx", "xx", "xx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 7));
+			addShapedRecipe(ModBlocks.BOP_REDWOOD_DOOR.newItemStack(3), "xx", "xx", "xx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 8));
+			addShapedRecipe(ModBlocks.BOP_WILLOW_DOOR.newItemStack(3), "xx", "xx", "xx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 9));
+			addShapedRecipe(ModBlocks.BOP_BAMBOO_DOOR.newItemStack(3), "xx", "xx", "xx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 10));
+			addShapedRecipe(ModBlocks.BOP_PINE_DOOR.newItemStack(3), "xx", "xx", "xx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 11));
+			addShapedRecipe(ModBlocks.BOP_HELLBARK_DOOR.newItemStack(3), "xx", "xx", "xx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 12));
+			addShapedRecipe(ModBlocks.BOP_JACARANDA_DOOR.newItemStack(3), "xx", "xx", "xx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 13));
+			addShapedRecipe(ModBlocks.BOP_MAHOGANY_DOOR.newItemStack(3), "xx", "xx", "xx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 14));
+			
+			addShapedRecipe(ModBlocks.BOP_SACREDOAK_TRAPDOOR.newItemStack(2), "xxx", "xxx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 0));
+			addShapedRecipe(ModBlocks.BOP_CHERRY_TRAPDOOR.newItemStack(2), "xxx", "xxx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 1));
+			addShapedRecipe(ModBlocks.BOP_DARK_TRAPDOOR.newItemStack(2), "xxx", "xxx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 2));
+			addShapedRecipe(ModBlocks.BOP_FIR_TRAPDOOR.newItemStack(2), "xxx", "xxx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 3));
+			addShapedRecipe(ModBlocks.BOP_ETHEREAL_TRAPDOOR.newItemStack(2), "xxx", "xxx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 4));
+			addShapedRecipe(ModBlocks.BOP_MAGIC_TRAPDOOR.newItemStack(2), "xxx", "xxx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 5));
+			addShapedRecipe(ModBlocks.BOP_MANGROVE_TRAPDOOR.newItemStack(2), "xxx", "xxx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 6));
+			addShapedRecipe(ModBlocks.BOP_PALM_TRAPDOOR.newItemStack(2), "xxx", "xxx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 7));
+			addShapedRecipe(ModBlocks.BOP_REDWOOD_TRAPDOOR.newItemStack(2), "xxx", "xxx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 8));
+			addShapedRecipe(ModBlocks.BOP_WILLOW_TRAPDOOR.newItemStack(2), "xxx", "xxx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 9));
+			addShapedRecipe(ModBlocks.BOP_BAMBOO_TRAPDOOR.newItemStack(2), "xxx", "xxx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 10));
+			addShapedRecipe(ModBlocks.BOP_PINE_TRAPDOOR.newItemStack(2), "xxx", "xxx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 11));
+			addShapedRecipe(ModBlocks.BOP_HELLBARK_TRAPDOOR.newItemStack(2), "xxx", "xxx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 12));
+			addShapedRecipe(ModBlocks.BOP_JACARANDA_TRAPDOOR.newItemStack(2), "xxx", "xxx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 13));
+			addShapedRecipe(ModBlocks.BOP_MAHOGANY_TRAPDOOR.newItemStack(2), "xxx", "xxx", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 14));
+			
+			addShapedRecipe(ModBlocks.BOP_SACREDOAK_SIGN.newItemStack(3), "xxx", "xxx", " s ", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 0));
+			addShapedRecipe(ModBlocks.BOP_CHERRY_SIGN.newItemStack(3), "xxx", "xxx", " s ", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 1));
+			addShapedRecipe(ModBlocks.BOP_DARK_SIGN.newItemStack(3), "xxx", "xxx", " s ", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 2));
+			addShapedRecipe(ModBlocks.BOP_FIR_SIGN.newItemStack(3), "xxx", "xxx", " s ", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 3));
+			addShapedRecipe(ModBlocks.BOP_ETHEREAL_SIGN.newItemStack(3), "xxx", "xxx", " s ", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 4));
+			addShapedRecipe(ModBlocks.BOP_MAGIC_SIGN.newItemStack(3), "xxx", "xxx", " s ", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 5));
+			addShapedRecipe(ModBlocks.BOP_MANGROVE_SIGN.newItemStack(3), "xxx", "xxx", " s ", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 6));
+			addShapedRecipe(ModBlocks.BOP_PALM_SIGN.newItemStack(3), "xxx", "xxx", " s ", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 7));
+			addShapedRecipe(ModBlocks.BOP_REDWOOD_SIGN.newItemStack(3), "xxx", "xxx", " s ", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 8));
+			addShapedRecipe(ModBlocks.BOP_WILLOW_SIGN.newItemStack(3), "xxx", "xxx", " s ", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 9));
+			addShapedRecipe(ModBlocks.BOP_BAMBOO_SIGN.newItemStack(3), "xxx", "xxx", " s ", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 10));
+			addShapedRecipe(ModBlocks.BOP_PINE_SIGN.newItemStack(3), "xxx", "xxx", " s ", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 11));
+			addShapedRecipe(ModBlocks.BOP_HELLBARK_SIGN.newItemStack(3), "xxx", "xxx", " s ", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 12));
+			addShapedRecipe(ModBlocks.BOP_JACARANDA_SIGN.newItemStack(3), "xxx", "xxx", " s ", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 13));
+			addShapedRecipe(ModBlocks.BOP_MAHOGANY_SIGN.newItemStack(3), "xxx", "xxx", " s ", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 14));
+			
+			addShapedRecipe(ModBlocks.BOP_WOOD_FENCE.newItemStack(3, 0), "xsx", "xsx", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 0));
+			addShapedRecipe(ModBlocks.BOP_WOOD_FENCE.newItemStack(3, 1), "xsx", "xsx", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 1));
+			addShapedRecipe(ModBlocks.BOP_WOOD_FENCE.newItemStack(3, 2), "xsx", "xsx", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 2));
+			addShapedRecipe(ModBlocks.BOP_WOOD_FENCE.newItemStack(3, 3), "xsx", "xsx", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 3));
+			addShapedRecipe(ModBlocks.BOP_WOOD_FENCE.newItemStack(3, 4), "xsx", "xsx", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 4));
+			addShapedRecipe(ModBlocks.BOP_WOOD_FENCE.newItemStack(3, 5), "xsx", "xsx", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 5));
+			addShapedRecipe(ModBlocks.BOP_WOOD_FENCE.newItemStack(3, 6), "xsx", "xsx", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 6));
+			addShapedRecipe(ModBlocks.BOP_WOOD_FENCE.newItemStack(3, 7), "xsx", "xsx", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 7));
+			addShapedRecipe(ModBlocks.BOP_WOOD_FENCE.newItemStack(3, 8), "xsx", "xsx", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 8));
+			addShapedRecipe(ModBlocks.BOP_WOOD_FENCE.newItemStack(3, 9), "xsx", "xsx", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 9));
+			addShapedRecipe(ModBlocks.BOP_WOOD_FENCE.newItemStack(3, 10), "xsx", "xsx", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 10));
+			addShapedRecipe(ModBlocks.BOP_WOOD_FENCE.newItemStack(3, 11), "xsx", "xsx", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 11));
+			addShapedRecipe(ModBlocks.BOP_WOOD_FENCE.newItemStack(3, 12), "xsx", "xsx", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 12));
+			addShapedRecipe(ModBlocks.BOP_WOOD_FENCE.newItemStack(3, 13), "xsx", "xsx", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 13));
+			addShapedRecipe(ModBlocks.BOP_WOOD_FENCE.newItemStack(3, 14), "xsx", "xsx", 's', "stickWood", 'x', ExternalContent.Blocks.BOP_PLANKS.newItemStack(1, 14));
 		}
 
 		if (ConfigFunctions.enableStoneBrickRecipes && !ModsList.GTNH.isLoaded()) {

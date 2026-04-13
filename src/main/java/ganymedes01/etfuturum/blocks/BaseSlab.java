@@ -170,6 +170,12 @@ public class BaseSlab extends BlockSlab implements ISubBlocksBlock {
 	public Item getItemDropped(int meta, Random random, int fortune) {
 		return Item.getItemFromBlock(singleSlab);
 	}
+	
+	// Probably not the best way to fix this
+	@Override
+	public boolean canSilkHarvest() {
+		return false;
+	}
 
 	private final Map<Integer, Float> hardnesses = Maps.newHashMap();
 	private final Map<Integer, Float> resistances = Maps.newHashMap();
